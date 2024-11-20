@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import java.util.*;
 public class Game {
+    // new objects
+    Scanner scan = new Scanner(System.in);
+    List<String> l1 = new ArrayList<>();
+
     // instance variables
     private String name;
     private String temp;
@@ -14,15 +18,13 @@ public class Game {
     private String ship2x;
     private int ship2y;
 
-    // new objects
-    Scanner scan = new Scanner(System.in);
-    List<String> l1 = new ArrayList<>();
-
+    // __________________________________
     // constructor - add a parameter
     public Game(){
 
     }
 
+    // ___________________________________
     public void start(){
         System.out.print("Welcome to BattleShips!\nEnter your name: ");
         name = scan.nextLine();
@@ -56,6 +58,7 @@ public class Game {
         return map;
     }
 
+    // _____________________________
     // helper method
     private void list(){
         l1.add("A");
@@ -65,11 +68,13 @@ public class Game {
         l1.add("E");
     }
 
+    // helper method
     private int xLocation(){
         int num = (int)(Math.random() * 4 + 1);
         return num;
     }
 
+    // helper method
     private String yLocation(){
         String lett = "";
         int let = (int)(Math.random() * 4 + 1);
