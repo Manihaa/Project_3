@@ -6,6 +6,8 @@ public class Game {
 
     // instance variables
     private Scanner scan;
+    private NPC npc = new NPC(scan);
+
     private String name;
     private String temp;
     private String letter;
@@ -17,10 +19,9 @@ public class Game {
     // constructor - add a parameter
     public Game(Scanner scan){
         this.scan = scan;
-        NPC npc = new NPC(scan);
     }
-
     // ___________________________________
+    // method
     public void start(){
         System.out.print("Welcome to BattleShips!\nEnter your name: ");
         name = scan.nextLine();
@@ -30,7 +31,7 @@ public class Game {
             System.out.println();
             // bunch of rules explained here
         }
-
+        npc.map();
     }
 
     public void ask(){

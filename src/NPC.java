@@ -10,17 +10,18 @@ public class NPC {
     private String map;
     private Scanner scan;
 
-    private String ship1x;
-    private int ship1y;
-    private String ship2x;
-    private int ship2y;
+    private int ship1x;
+    private String ship1y;
+    private int ship2x;
+    private String ship2y;
 
+    // _____________________________
     // constructor
     public NPC(Scanner scan){
         this.scan = scan;
     }
-
     // _____________________________
+
     // method
     public String map(){
         list();
@@ -35,7 +36,15 @@ public class NPC {
         }
         return map;
     }
-    // _____________________________
+
+    public void shipMaker(){
+        ship1x = xLocation();
+        ship1y = yLocation();
+        ship2x = xLocation();
+        ship2y = yLocation();
+
+        if ( // the coordinates of the two ships should not overlap
+    }
 
     // helper method
     private void list(){
@@ -48,7 +57,7 @@ public class NPC {
 
     // helper method
     private int xLocation(){
-        int num = (int)(Math.random() * 4 + 1);
+        int num = (int)(Math.random() * 3 + 1);
         return num;
     }
 
