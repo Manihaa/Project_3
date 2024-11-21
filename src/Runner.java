@@ -1,6 +1,9 @@
+import java.util.Scanner;
 public class Runner {
     public static void main(String[] args) {
-        Game game = new Game();
+        Scanner scan = new Scanner(System.in);
+
+        Game game = new Game(scan);
         game.start();
     }
 }
