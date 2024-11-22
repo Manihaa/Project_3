@@ -7,9 +7,11 @@ public class NPC {
     List<String> l1 = new ArrayList<>();
 
     // instance variables
-    private String map;
     private Scanner scan;
+    private String map;
+    private boolean hit;
 
+    // (y, x) --> (Letter, #)
     private int ship1x;
     private String ship1y;
     private int ship2x;
@@ -19,6 +21,7 @@ public class NPC {
     // constructor
     public NPC(Scanner scan){
         this.scan = scan;
+        hit = false;
     }
     // _____________________________
 
@@ -37,15 +40,58 @@ public class NPC {
         return map;
     }
 
-    public void shipMaker(){
+    // method for 2 ships
+    public void shipMaker(int num){
         ship1x = xLocation();
         ship1y = yLocation();
         ship2x = xLocation();
         ship2y = yLocation();
 
-        if ( // the coordinates of the two ships should not overlap
+        while (ship1y.compareTo(ship2y) == 0 && (ship1x == ship2x || Math.abs(ship1x-ship1x) == 1)){
+            ship2x = xLocation();
+            ship2y = yLocation();
+        }
     }
 
+    // method for 1 ship
+    public void shipMaker(double num){
+        ship1x = xLocation();
+        ship1y = yLocation();
+    }
+
+    // method for 2 ships
+    public boolean hitOrMiss(int num, String letter, int number){
+        if (ship1y.equals(letter) && (ship1x == number || ship1x + 1 == number)){
+            hit = true;
+        }else if (ship2y.equals(letter) && (ship2x == number || ship2x + 1 == number)){
+            hit = true;
+        }else{
+            hit = false;
+        }
+        return hit;
+    }
+
+    // method for 1 ship
+    public boolean hitOrMiss(double num, String letter, int number){
+        if (ship1y.equals(letter) && (ship1x == number || ship1x + 1 == number)){
+            hit = true;
+        }else{
+            hit = false;
+        }
+        return hit;
+    }
+
+    // method
+    public void hit(){
+        //change map to represent a ship hit
+    }
+
+    // method
+    public void miss(){
+        //change map to represent a ship missed
+    }
+
+    // _____________________________
     // helper method
     private void list(){
         l1.add("A");
@@ -66,15 +112,15 @@ public class NPC {
         String lett = "";
         int let = (int)(Math.random() * 4 + 1);
         if (let == 1){
-
+            lett = "A";
         }else if (let == 2){
-
+            lett = "B";
         }else if (let == 3){
-
+            lett = "C";
         }else if (let == 4){
-
+            lett = "D";
         }else if (let == 5){
-
+            lett = "E";
         }
         return lett;
     }
