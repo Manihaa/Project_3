@@ -22,12 +22,12 @@ public class NPC {
     public NPC(Scanner scan){
         this.scan = scan;
         hit = false;
+        list();
     }
     // _____________________________
 
     // method
     public String map(){
-        list();
         map = "      1    2    3    4    5\n";
         for (int i = 0; i != 5; i++){
             map += l1.get(i) + "|  ";
@@ -82,12 +82,23 @@ public class NPC {
     }
 
     // method
-    public void hit(){
-        //change map to represent a ship hit
+    public String hit(String letter, int number){
+        int idx = l1.indexOf(letter);
+        map = "      1    2    3    4    5\n";
+        for (int i = 0; i > idx - 1; i++){
+            map += l1.get(i) + "|  ";
+
+            for (int j = 1; j != 6; j++){
+                map += "  o  ";
+            }
+            map += "\n\n";
+        }
+        // somehow edit the "o" at the number column when you're already in the letter row
+        return map;
     }
 
     // method
-    public void miss(){
+    public String miss(String letter, int number){
         //change map to represent a ship missed
     }
 

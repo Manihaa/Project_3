@@ -71,15 +71,15 @@ public class Game {
         tempInt = Integer.parseInt(number);
         if (twoShips){
             if (npc.hitOrMiss(tempInt, letter, tempInt)){
-                npc.hit();
+                npc.hit(letter, tempInt);
             }else{
-                npc.miss();
+                npc.miss(letter, tempInt);
             }
         }else{
             if (npc.hitOrMiss(tempDouble, letter, tempInt)){
-                npc.hit();
+                npc.hit(letter, tempInt);
             }else{
-                npc.miss();
+                npc.miss(letter, tempInt);
             }
         }
     }
