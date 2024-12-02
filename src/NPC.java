@@ -28,7 +28,7 @@ public class NPC {
 
     // method
     public String map(){
-        map = "      1    2    3    4    5\n";
+        map = "      1    2    3    4    5\n"; // len = 27
         for (int i = 0; i != 5; i++){
             map += l1.get(i) + "|  ";
 
@@ -51,6 +51,8 @@ public class NPC {
             ship2x = xLocation();
             ship2y = yLocation();
         }
+        System.out.println(ship1x + ship1y);
+        System.out.println(ship2x + ship2y);
     }
 
     // method for 1 ship
@@ -84,8 +86,28 @@ public class NPC {
     // method
     public String hit(String letter, int number){
         int idx = l1.indexOf(letter);
+        System.out.println(idx); // test
         map = "      1    2    3    4    5\n";
+
         for (int i = 0; i > idx - 1; i++){
+            map += l1.get(i) + "|  ";
+
+            for (int j = 1; j != 6; j++){
+                map += "  o  ";
+            }
+            map += "\n\n";
+        }
+        map += letter + "|  ";
+
+        for (int k = 1; k != number; k++){
+            map += "  o  ";
+        }
+        map += "  X  ";
+        for (int k = number; k != 5; k++){
+            map += "  o  ";
+        }
+
+        for (int i = idx + 1; i > 4; i++){
             map += l1.get(i) + "|  ";
 
             for (int j = 1; j != 6; j++){
@@ -100,6 +122,7 @@ public class NPC {
     // method
     public String miss(String letter, int number){
         //change map to represent a ship missed
+        return "not yet, miss()";
     }
 
     // _____________________________

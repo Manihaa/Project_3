@@ -17,6 +17,8 @@ public class Game {
     private String letter;
     private String number;
     private String point;
+    private int ask;
+    private boolean endGame;
 
     // __________________________________
     // constructor - add a parameter
@@ -25,6 +27,8 @@ public class Game {
         tempInt = 1;
         tempDouble = 1.0;
         twoShips = false;
+        ask = 0;
+        endGame = false;
     }
     // ___________________________________
 
@@ -57,23 +61,26 @@ public class Game {
         System.out.println(npc.map());
 
         // create some way for the game to stop asking
-        while (){
+        while (!endGame){
+            ask++;
             ask();
         }
     }
 
     // method
     public void ask(){
-        System.out.println("Call your shot (Letter, #) ---> ");
+        System.out.print("Call your shot (Letter, #) ---> ");
         point = scan.nextLine();
         letter = point.substring(1, 2);
         number = point.substring(4, 5);
         tempInt = Integer.parseInt(number);
         if (twoShips){
             if (npc.hitOrMiss(tempInt, letter, tempInt)){
-                npc.hit(letter, tempInt);
+                System.out.println(npc.hit(letter, tempInt));
+                System.out.print("hit2");
             }else{
-                npc.miss(letter, tempInt);
+                System.out.println(npc.miss(letter, tempInt));
+                System.out.print("miss2");
             }
         }else{
             if (npc.hitOrMiss(tempDouble, letter, tempInt)){
