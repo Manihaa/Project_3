@@ -10,63 +10,67 @@ public class NPC {
     private Scanner scan;
     private String map;
     private boolean hit;
+    private int hits;
 
     // (y, x) --> (Letter, #)
-    private int ship1x;
-    private String ship1y;
-    private int ship2x;
-    private String ship2y;
+    private int ship1;
+    private int ship2;
 
     // _____________________________
     // constructor
     public NPC(Scanner scan){
         this.scan = scan;
         hit = false;
+        hits = 0;
         list();
     }
     // _____________________________
 
+    // getter method
+    public int getHits(){
+        return hits;
+    }
+
     // method
     public String map(){
-        map = "      1    2    3    4    5\n"; // len = 27
-        for (int i = 0; i != 5; i++){
-            map += l1.get(i) + "|  ";
-
-            for (int j = 1; j != 6; j++){
-                map += "  o  ";
+        map = "\n--------------------\n";
+        int num = 0;
+        while (num < 25){
+            map += l1.get(num) + "  ";
+            if ((num + 1)% 5 == 0 && num != 24){
+                map += "\n\n";
             }
-            map += "\n\n";
+            num++;
         }
         return map;
     }
 
     // method for 2 ships
     public void shipMaker(int num){
-        ship1x = xLocation();
-        ship1y = yLocation();
-        ship2x = xLocation();
-        ship2y = yLocation();
+        ship1 = Location();
+        ship2 = Location();
 
-        while (ship1y.compareTo(ship2y) == 0 && (ship1x == ship2x || Math.abs(ship1x-ship1x) == 1)){
-            ship2x = xLocation();
-            ship2y = yLocation();
+        while (ship1 == ship2 || Math.abs(ship1 - ship2) == 1){
+            ship2 = Location();
         }
-        System.out.println(ship1x + ship1y);
-        System.out.println(ship2x + ship2y);
+        System.out.println(ship1 + " " + ship2); //test
     }
 
     // method for 1 ship
     public void shipMaker(double num){
-        ship1x = xLocation();
-        ship1y = yLocation();
+        ship1 = Location();
+        System.out.println(ship1); //test
+
     }
 
     // method for 2 ships
-    public boolean hitOrMiss(int num, String letter, int number){
-        if (ship1y.equals(letter) && (ship1x == number || ship1x + 1 == number)){
+    public boolean hitOrMiss(int num, int number){
+        if (number == ship1 || number == ship2){
             hit = true;
-        }else if (ship2y.equals(letter) && (ship2x == number || ship2x + 1 == number)){
+            hits++;
+        }else if (number == ship1 + 1 || number == ship2 + 1){
             hit = true;
+            hits++;
         }else{
             hit = false;
         }
@@ -74,9 +78,13 @@ public class NPC {
     }
 
     // method for 1 ship
-    public boolean hitOrMiss(double num, String letter, int number){
-        if (ship1y.equals(letter) && (ship1x == number || ship1x + 1 == number)){
+    public boolean hitOrMiss(double num, int number){
+        if (number == ship1){
             hit = true;
+            hits++;
+        }else if (number == ship1 + 1){
+            hit = true;
+            hits++;
         }else{
             hit = false;
         }
@@ -84,78 +92,40 @@ public class NPC {
     }
 
     // method
-    public String hit(String letter, int number){
-        int idx = l1.indexOf(letter);
-        System.out.println(idx); // test
-        map = "      1    2    3    4    5\n";
+    public String hit(int number){
+        String num = "" + number;
+        int idx = map.indexOf(num);
+        int len = num.length();
 
-        for (int i = 0; i > idx - 1; i++){
-            map += l1.get(i) + "|  ";
-
-            for (int j = 1; j != 6; j++){
-                map += "  o  ";
-            }
-            map += "\n\n";
-        }
-        map += letter + "|  ";
-
-        for (int k = 1; k != number; k++){
-            map += "  o  ";
-        }
-        map += "  X  ";
-        for (int k = number; k != 5; k++){
-            map += "  o  ";
-        }
-
-        for (int i = idx + 1; i > 4; i++){
-            map += l1.get(i) + "|  ";
-
-            for (int j = 1; j != 6; j++){
-                map += "  o  ";
-            }
-            map += "\n\n";
-        }
-        // somehow edit the "o" at the number column when you're already in the letter row
+        String tempMap = map.substring(0, idx) + "X" + map.substring(idx + len);
+        map = tempMap;
         return map;
     }
 
     // method
-    public String miss(String letter, int number){
-        //change map to represent a ship missed
-        return "not yet, miss()";
+    public String miss(int number){
+        String num = "" + number;
+        int idx = map.indexOf(num);
+        int len = num.length();
+
+        String tempMap = map.substring(0, idx) + "-" + map.substring(idx + len);
+        map = tempMap;
+        return map;
     }
+
 
     // _____________________________
     // helper method
     private void list(){
-        l1.add("A");
-        l1.add("B");
-        l1.add("C");
-        l1.add("D");
-        l1.add("E");
+        for (int i = 1; i != 26; i++){
+            l1.add(String.valueOf(i));
+        }
     }
 
     // helper method
-    private int xLocation(){
-        int num = (int)(Math.random() * 3 + 1);
+    private int Location(){
+        int num = (int) ((int)(Math.random() * 3 + 1) * (Math.random() * 3 + 1));
         return num;
     }
 
-    // helper method
-    private String yLocation(){
-        String lett = "";
-        int let = (int)(Math.random() * 4 + 1);
-        if (let == 1){
-            lett = "A";
-        }else if (let == 2){
-            lett = "B";
-        }else if (let == 3){
-            lett = "C";
-        }else if (let == 4){
-            lett = "D";
-        }else if (let == 5){
-            lett = "E";
-        }
-        return lett;
-    }
 }
