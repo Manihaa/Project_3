@@ -24,6 +24,13 @@ public class NPC {
         hits = 0;
         list();
     }
+
+    public NPC(Scanner scan, int num){
+        this.scan = scan;
+        hit = false;
+        hits = num;
+        list();
+    }
     // _____________________________
 
     // getter method
