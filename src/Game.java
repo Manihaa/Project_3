@@ -19,7 +19,7 @@ public class Game {
     private boolean endGame;
 
     // __________________________________
-    // constructor - add a parameter
+    // constructor
     public Game(Scanner scan){
         this.scan = scan;
         tempInt = 1;
