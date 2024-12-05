@@ -209,7 +209,10 @@ public class NPC {
      * @return Random point on a map
      */
     private int Location(){
-        int num = (int) ((int)(Math.random() * 3 + 1) * (Math.random() * 3 + 1));
+        int num = 0;
+        while(num%5==0){
+            num = (int)(Math.random() * 24 + 1);
+        }
         return num;
     }
 }
