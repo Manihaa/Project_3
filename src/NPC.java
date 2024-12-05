@@ -203,7 +203,7 @@ public class NPC {
         }
     }
 
-    // helper method
+    // helper method-
     /**
      *Private helper method that creates a random point on a map
      * @return Random point on a map
