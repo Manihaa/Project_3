@@ -57,7 +57,6 @@ public class Game {
         }
         System.out.println(npc.map());
 
-        // create some way for the game to stop asking
         while (!endGame){
             ask++;
             ask();
