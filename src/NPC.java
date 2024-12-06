@@ -99,11 +99,11 @@ public class NPC {
      * @param num Determined that two ships will be made
      */
     public void shipMaker(int num){
-        ship1 = Location();
-        ship2 = Location();
+        ship1 = location();
+        ship2 = location();
 
         while (ship1 == ship2 || Math.abs(ship1 - ship2) == 1){
-            ship2 = Location();
+            ship2 = location();
         }
         System.out.println(ship1 + " " + ship2); //test
     }
@@ -114,7 +114,7 @@ public class NPC {
      * @param num Determined that one ship will be made
      */
     public void shipMaker(double num){
-        ship1 = Location();
+        ship1 = location();
         System.out.println(ship1); //test
 
     }
@@ -208,7 +208,7 @@ public class NPC {
      *Private helper method that creates a random point on a map
      * @return Random point on a map
      */
-    private int Location(){
+    private int location(){
         int num = 0;
         while(num%5==0){
             num = (int)(Math.random() * 24 + 1);
